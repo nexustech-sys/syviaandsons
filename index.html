@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Godswill Sylvia & Sons | global · contracts</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS (animate on scroll) light style -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fcf9f4;
+      color: #1e2a36;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* CONTAINER — perfect padding for all sizes */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .container { padding: 0 2rem; }
+    }
+
+    /* --- MOBILE FIRST HEADER / HAMBURGER --- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(145deg, #0B2A4A, #2b5777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .logo span {
+      font-size: 0.75rem;
+      display: block;
+      color: #4d6272;
+      letter-spacing: 0.5px;
+    }
+
+    /* hamburger button */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 2rem;
+      height: 2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 30;
+    }
+    .hamburger span {
+      width: 2rem;
+      height: 0.25rem;
+      background: #0B2A4A;
+      border-radius: 10px;
+      transition: all 0.3s linear;
+      position: relative;
+      transform-origin: 1px;
+    }
+
+    /* mobile nav */
+    .nav-links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      background: #ffffffec;
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 20px 30px -10px rgba(0,30,50,0.2);
+      border: 1px solid #eedbbd;
+      z-index: 20;
+    }
+    .nav-links.open {
+      display: flex;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e3b4f;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #e9dccb;
+      transition: 0.2s;
+    }
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+    .nav-links a:hover {
+      color: #b8873a;
+      padding-left: 0.5rem;
+    }
+
+    /* desktop nav */
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none;
+      }
+      .nav-links {
+        display: flex !important;
+        width: auto;
+        flex-direction: row;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin-top: 0;
+      }
+      .nav-links a {
+        font-size: 1rem;
+        padding: 0 0 0 2rem;
+        border-bottom: none;
+        font-weight: 500;
+      }
+      .nav-links a:hover {
+        padding-left: 2rem; /* keep consistent */
+      }
+    }
+
+    /* irs badge */
+    .irs-badge {
+      background: #132e48;
+      color: #f5e7c8;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    /* --- global spacing (mobile perfect) --- */
+    section {
+      padding: 3.5rem 0;
+    }
+    @media (min-width: 768px) {
+      section { padding: 5rem 0; }
+    }
+
+    h2.section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0e293f;
+      line-height: 1.2;
+    }
+    .title-decor {
+      width: 80px;
+      height: 5px;
+      background: #c79b42;
+      margin: 0.8rem 0 2rem;
+      border-radius: 8px;
+    }
+
+    /* hero */
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .hero-grid {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    .hero-content h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    @media (min-width: 480px) {
+      .hero-content h2 { font-size: 3rem; }
+    }
+    .hero-accent {
+      color: #b8873a;
+      border-bottom: 3px solid #e2c28b;
+    }
+    .hero-map {
+      background: #ffffffd6;
+      backdrop-filter: blur(4px);
+      padding: 2rem 1.5rem;
+      border-radius: 2rem;
+      border: 1px solid #eedabc;
+      text-align: center;
+    }
+
+    /* cards & grids */
+    .service-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 500px) {
+      .service-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .service-cards { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .card {
+      background: white;
+      padding: 2rem 1.2rem;
+      border-radius: 2rem;
+      box-shadow: 0 10px 20px -8px rgba(82, 62, 34, 0.2);
+      border: 1px solid #f0e1ce;
+      transition: transform 0.2s;
+    }
+
+    .contact-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: #ffffffd9;
+      border-radius: 2.5rem;
+      padding: 2rem 1.5rem;
+    }
+    @media (min-width: 600px) {
+      .contact-flex { flex-direction: row; }
+    }
+
+    .ngn-box, .us-box {
+      flex: 1;
+      background: white;
+      padding: 1.8rem 1.2rem;
+      border-radius: 2rem;
+      border-left: 8px solid #132e48;
+    }
+    .us-box { border-left-color: #c79b42; }
+
+    .owner-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .owner-grid {
+        flex-direction: row;
+        text-align: left;
+      }
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    @media (min-width: 600px) {
+      .features { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    }
+
+    /* footer grid */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 480px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .footer-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* micro fix */
+    .phone-big, .phone-lead {
+      word-break: break-word;
+      font-size: 1.1rem;
+    }
+    img, svg { max-width: 100%; }
+
+    /* AOS override (no layout shift) */
+    [data-aos] {
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- header with hamburger (mobile perfect) -->
+<div class="container">
+  <div class="navbar">
+    <div class="logo">
+      <h1>Godswill Sylvia & Sons</h1>
+      <span>enterprise · IRS registered</span>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#global">Global</a>
+      <a href="#owner">Team</a>
+      <a href="#why">Why us</a>
+      <a href="#contact">Contact</a>
+      <span class="irs-badge" style="margin-top: 1rem; align-self: flex-start;"><i class="fas fa-certificate"></i> EIN verified</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO (section 1) -->
+<section id="home" style="padding-top: 1rem;">
+  <div class="container hero-grid">
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="700">
+      <h2>Bridging continents,<br><span class="hero-accent">delivering excellence</span></h2>
+      <p style="font-size: 1.2rem; margin: 1.2rem 0;">Godswill Sylvia and sons enterprise — import/export, general contracts & merchandise. IRS registered Nigeria/US.</p>
+      <div class="irs-badge"><i class="fa-regular fa-circle-check"></i> verified</div>
+    </div>
+    <div class="hero-map" data-aos="fade-left" data-aos-delay="150">
+      <i class="fas fa-globe-africa" style="font-size: 2.5rem; color: #1b4a66;"></i>
+      <i class="fas fa-globe-americas" style="font-size: 2.5rem; color: #c79b42; margin-left: 1rem;"></i>
+      <div style="margin: 1rem 0;">
+        <p><strong>NGN:</strong> 22 Ehere Ogbohill, Aba, Abia 450101</p>
+        <p><strong>US:</strong> Florida (IRS correspondence)</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+        <span><i class="fas fa-phone-alt"></i> Nigeria +234 813 509 0321</span>
+        <span><i class="fas fa-phone-alt"></i> US +1 (863) 309-8931</span>
+      </div>
+      <p style="background: #ece3d7; border-radius: 3rem; padding: 0.5rem; margin-top: 1rem;"><i class="fa-regular fa-envelope"></i> contact@godswillsylvia.com</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2 : IRS / full name -->
+<section data-aos="fade-up">
+  <div class="container">
+    <div style="background: white; border-radius: 2.5rem; padding: 2rem 1.5rem; border: 1px solid #dfd2bf;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;">
+        <div><i class="fas fa-stamp" style="font-size: 4rem; color: #c79b42;"></i></div>
+        <div>
+          <h3 style="color: #0f3c55;">registered & verified</h3>
+          <p><strong>Full name:</strong> Godswill Sylvia Ngozi (First: Sylvia, Middle: Ngozi, Last: Godswill)</p>
+          <p><i class="fas fa-file-invoice"></i> IRS verified (active) · Nigeria CAC</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 : Services -->
+<section id="services" style="background: #f5efe6;" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title">our core operations</h2>
+    <div class="title-decor"></div>
+    <div class="service-cards">
+      <div class="card" data-aos="zoom-in" data-aos-delay="50"><i class="fas fa-ship" style="font-size: 2.5rem; color:#ad7a3b;"></i><h3>Import & Export</h3><p>Global freight, commodities Africa–Americas–Europe</p></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-file-signature"></i><h3>General contracts</h3><p>Government & private tenders, logistics support</p></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-boxes"></i><h3>General merchandise</h3><p>Industrial & consumer goods, wholesale</p></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-handshake"></i><h3>Partnerships</h3><p>JV, agency representation, trade facilitation</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4 : Global presence (dual phones) -->
+<section id="global" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title">dual‑continent command</h2>
+    <div class="title-decor"></div>
+    <div class="contact-flex">
+      <div class="ngn-box" data-aos="flip-right" data-aos-delay="80">
+        <i class="fas fa-map-marker-alt" style="color:#274c6b; font-size: 2rem;"></i>
+        <h3>Nigeria (HQ)</h3>
+        <p>22 Ehere Ogbohill, Aba, Abia state 450101</p>
+        <p class="phone-lead"><i class="fas fa-phone"></i> +234 813 509 0321</p>
+      </div>
+      <div class="us-box" data-aos="flip-right" data-aos-delay="150">
+        <i class="fas fa-star-of-life" style="color:#c79b42; font-size: 2rem;"></i>
+        <h3>United States</h3>
+        <p>IRS registered · Florida liaison</p>
+        <p class="phone-lead"><i class="fas fa-phone"></i> +1 (863) 309-8931</p>
+        <p> US business ready</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 5 : Owner full detail -->
+<section id="owner" style="background: #fffcf7;" data-aos="fade-right">
+  <div class="container owner-grid">
+    <div class="owner-img" data-aos="zoom-in">
+      <i class="fas fa-user-circle" style="font-size: 8rem; color: #274c6b;"></i>
+    </div>
+    <div class="owner-desc" data-aos="fade-left">
+      <h2 class="section-title" style="margin-bottom: 0.3rem;">Godswill Sylvia Ngozi</h2>
+      <p style="font-size: 1.2rem;"><i class="fas fa-chevron-right"></i>  Sylvia (first) · Ngozi (middle) · Godswill (last)</p>
+      <div class="title-decor" style="margin: 0.8rem 0;"></div>
+      <p>Founder & CEO — 15+ years in cross‑border trade, contracts and merchandise. The "sons" represent the next generation of global trade experts.</p>
+      <div style="font-family: 'Brush Script MT', cursive; font-size: 2.2rem; color: #4f3e2b;">Sylvia N. Godswill</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6 : why us + extra trust -->
+<section id="why" style="background: #1b3447; color: #f6f2ea;" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title" style="color: #f5e7c8;">why global partners trust us</h2>
+    <div class="title-decor" style="background: #f5c17d;"></div>
+    <div class="features">
+      <div class="feature-item" data-aos="flip-up"><i class="fas fa-building-columns" style="font-size: 2.5rem; color: #f5c17d;"></i><h3>IRS compliant</h3><p>Registered & transparent</p></div>
+      <div class="feature-item" data-aos="flip-up" data-aos-delay="70"><i class="fas fa-scale-balanced" style="font-size: 2.5rem;"></i><h3>General contracts</h3><p>Government & private</p></div>
+      <div class="feature-item" data-aos="flip-up" data-aos-delay="140"><i class="fas fa-truck-fast" style="font-size: 2.5rem;"></i><h3>Merchandise experts</h3><p>Raw materials to finished goods</p></div>
+      <div class="feature-item" data-aos="flip-up" data-aos-delay="210"><i class="fas fa-headset" style="font-size: 2.5rem;"></i><h3>24/7 NG/US lines</h3><p>+234 813 509 0321 · +1 (863)3098931</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact" style="background: #0e1f2c; color: #ddd8cd; padding: 3rem 0 2rem;">
+  <div class="container footer-grid">
+    <div>
+      <h3 style="color: #f5e7c8; font-size: 1.8rem;">Godswill Sylvia <br><span style="font-size: 1.2rem;">& sons enterprise</span></h3>
+      <p>IRS registered · Aba, Nigeria & US</p>
+    </div>
+    <div>
+      <h4><i class="fas fa-location-dot"></i> Nigeria</h4>
+      <p>22 Ehere Ogbohill, Aba, Abia 450101</p>
+      <p><i class="fas fa-phone"></i> +234 813 509 0321</p>
+    </div>
+    <div>
+      <h4><i class="fas fa-location-dot"></i> US number</h4>
+      <p><i class="fas fa-phone"></i> +1 (863) 309-8931</p>
+      <p><i class="fa-regular fa-envelope"></i> us.contact@godswillsylvia.com</p>
+    </div>
+    <div>
+      <h4>Full name (owner)</h4>
+      <p>Godswill Sylvia Ngozi<br>First: Sylvia | Middle: Ngozi<br>Last: Godswill</p>
+      <p>Import/Export · Gen. contracts · Gen. merchandise</p>
+    </div>
+  </div>
+  <div class="container" style="text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #335566;">
+    <p>© 2025 Godswill Sylvia and sons enterprise — stripe‑ready · IRS registered</p>
+  </div>
+</footer>
+
+<!-- AOS library -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Hamburger + AOS init -->
+<script>
+  AOS.init({ duration: 800, once: true, offset: 40, disable: false });
+
+  const hamburger = document.getElementById('hamburgerBtn');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    // optional animation for hamburger
+    const spans = hamburger.querySelectorAll('span');
+    spans.forEach(span => span.style.backgroundColor = '#0B2A4A');
+  });
+
+  // close nav after link click (mobile)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth < 769) {
+        navLinks.classList.remove('open');
+      }
+    });
+  });
+
+  // resize listener: ensure desktop nav is always visible
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 769) {
+      navLinks.classList.remove('open'); // remove mobile class but desktop shows anyway
+    }
+  });
+</script>
+<!-- ensure body fits exact mobile width -->
+</body>
+</html>
